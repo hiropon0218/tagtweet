@@ -8,9 +8,10 @@ if (location.pathname.match("tweets/new")){
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
-        const tagName = XHR.response.keyword;
         const searchResult = document.getElementById("search-result");
         searchResult.innerHTML = "";
+        if (XHR.response) {
+          const tagName = XHR.response.keyword;
         tagName.forEach((tag) => {
           const childElement = document.createElement("div");
           childElement.setAttribute("class", "child");
@@ -24,6 +25,7 @@ if (location.pathname.match("tweets/new")){
           });
         });
       };
+    };
     });
   });
 };
